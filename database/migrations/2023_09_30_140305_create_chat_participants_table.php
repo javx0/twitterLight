@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('chat_participants', function (Blueprint $table) {
             $table->unsignedBigInteger("id_user");
             $table->unsignedBigInteger("id_chat");
+            $table->timestamps();
             
             $table->primary("id_user","id_chat");
             $table->foreign("id_user")->references("id")->on("users");
