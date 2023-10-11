@@ -1,0 +1,32 @@
+
+<button type="button" class="btn btn-primary" (click)="openModal(template,'Register')">Register</button>
+
+<br>
+
+<button type="button" class="btn btn-primary" (click)="openModal(template,'Login')">Login</button>
+
+ 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{modalTitle}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+        <label for="userInput">User:</label>
+        <input type="text" class="form-control" id="userInput" placeholder="Enter username" [formControl]="name">
+    </div>
+    <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input type="password" class="form-control" id="passwordInput" placeholder="Enter password" [formControl]="password">
+    </div>
+    <br>
+
+    <button class="btn btn-primary" (click)="modalRef?.hide(); register()" *ngIf="modalTitle =='Register'">Register</button>
+    
+    <button class="btn btn-primary" (click)="modalRef?.hide(); login()" *ngIf="modalTitle =='Login'">Login</button>
+    
+  </div>
+</ng-template>

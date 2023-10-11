@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Symfony\Contracts\Service\Attribute\Required;
+use Exception;
 
 
 
@@ -53,5 +54,15 @@ class AuthController extends Controller
         }
         
         return response()->json(compact("token"));
+    }
+
+    public function isUser(Request $request){
+        
+        try{
+            JWTAuth::parseToken()->authenticate();
+        }catch(Exception $e){
+            return response()->json(["isUser" => "false"]);
+        }
+        return response()->json(["isUser" => "true"]);
     }
 }

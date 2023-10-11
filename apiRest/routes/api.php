@@ -22,5 +22,5 @@ Route::post("login",[AuthController::class,"login"]);
 
 //Routes protected by jwt
 Route::middleware("jwt.verify")->group(function(){
-    
+    Route::post("isuser",[AuthController::class,"isUser"]);
 });
