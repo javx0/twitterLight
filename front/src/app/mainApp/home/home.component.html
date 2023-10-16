@@ -1,0 +1,40 @@
+<nav *ngIf="homeView == 'followingPost'">
+    <div class="view" (click)="loadLatestPost()">
+        Latest
+    </div>
+
+    <div class="view selected_no_right" (click)="loadFollowingPost()">
+        Following
+    </div>
+</nav>
+
+<nav *ngIf="homeView == 'latestPost'">
+    <div class="view selected_no_left" (click)="loadLatestPost()">
+        Latest
+    </div>
+
+    <div class="view" (click)="loadFollowingPost()">
+        Following
+    </div>
+</nav>
+
+<article>
+
+    <section *ngFor="let post of postList;">
+        <header>
+            <h1><a href="/user/{{post.userName}}">{{post.userName}}</a></h1>
+            <p>{{post.created_at}}</p>
+        </header>
+        <p>
+            {{post.text}}
+        </p>
+    </section>
+
+    <div class="next_page">
+        <div class="icon" (click)="getMorePost()">
+            <i-bs name="arrow-right-circle"></i-bs>
+        </div>
+    </div>
+    
+
+</article>

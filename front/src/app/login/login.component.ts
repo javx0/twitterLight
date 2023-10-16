@@ -2,6 +2,7 @@ import { Component, TemplateRef } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,12 @@ export class LoginComponent {
   protected name = new FormControl();
   protected password = new FormControl();
 
-  constructor(private loginservice:LoginService, private modalService: BsModalService){
+  constructor(private loginservice:LoginService, private modalService: BsModalService, private router: Router){
 
+  }
+
+  ngOnInit(){
+    if(localStorage.getItem("token")) this.router.navigate(['/home/0']);
   }
 
   openModal(template: TemplateRef<any>, title:string) {
@@ -26,16 +31,17 @@ export class LoginComponent {
   register(){
     this.loginservice.register(this.name.value, this.password.value).subscribe(response=>{
       
-
       localStorage.setItem("token",response.token);
+      this.router.navigate(['/home/0'])
     })
     this.cleanForm();
   }
 
   login() {
     this.loginservice.login(this.name.value, this.password.value).subscribe(response=>{
+      
       localStorage.setItem("token",response.token);
-
+      this.router.navigate(['/home/0'])
     })
     this.cleanForm();
   }  

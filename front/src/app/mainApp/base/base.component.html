@@ -1,0 +1,42 @@
+<div class="pageContainer">
+
+    <nav>
+        <tr>
+            <td (click)="goHome()"><i-bs name="house"></i-bs> Home</td>
+            <td (click)="goMessages()"><i-bs name="envelope"></i-bs> Messages</td>
+            <td (click)="logout()" ><i-bs name="box-arrow-left"></i-bs> Logout</td>
+            <button type="button" class="btn btn-primary btn-lg" (click)="openModal(postTemplate)">Post</button>
+        </tr>
+    </nav>
+    
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+
+    <aside>
+        
+    </aside>
+
+</div>
+
+
+
+<!--Templates-->
+
+<ng-template #postTemplate>
+    <div class="modal-body">
+
+
+        <i-bs name="x" class="close" (click)="modalRef?.hide()"> </i-bs>
+
+
+        <div class="form-group">
+            <textarea class="textForm" rows="3" placeholder="Whats happening..." [formControl]="text"></textarea>
+          </div>
+      <br>
+
+      <button class="btn btn-primary btn-lg" (click)="modalRef?.hide(); createPost()"> Post </button>
+      
+    </div>
+  </ng-template>
+  

@@ -1,0 +1,68 @@
+<div class="main_container">
+
+    <div class="create_chat" (click)="openModal(createChatTemplate)">
+        <i-bs name="plus-circle-fill"></i-bs> Create chat
+    </div>
+
+    <div class="chat_list">
+        <div class="chat" *ngFor="let chat of chatList;" (click)="selectChat(chat)" >
+            {{chat.name}}
+        </div>
+    </div>
+
+    <div class="chat_name">
+        <h1>
+            {{chatSelected.name}}
+        </h1>
+        <i-bs name="person-plus-fill" (click)="openModal(addUserTemplate)"></i-bs>
+    </div>
+
+    <div class="message_list">
+        <div class="chat_message" *ngFor="let message of messagesList;" [ngClass]="{'chat_right': message.userName == username}">
+            <header>{{message.userName}}</header>
+            <div>
+                {{message.text}}
+            </div>
+            <footer>{{message.created_at}}</footer>
+        </div>
+    </div>
+
+    <div class="send_message">
+        <input type="text" class="text_form" placeholder="chat name..." [formControl]="newChatMessage">
+
+        <i-bs name="send" (click)="sendMessage()"></i-bs>
+    </div>
+
+</div>
+
+
+<ng-template #createChatTemplate>
+    <div class="modal-body">
+
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Create Chat</h4>
+            <i-bs name="x" class="close" (click)="modalRef?.hide()"> </i-bs>
+        </div>
+
+        <input type="text" class="chat_name_form" placeholder="chat name..." [formControl]="newChatName">
+
+      <button class="btn btn-primary btn-lg" (click)="modalRef?.hide(); createChat(); ">Create chat</button>
+      
+    </div>
+</ng-template>
+
+
+<ng-template #addUserTemplate>
+    <div class="modal-body">
+
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Add User</h4>
+            <i-bs name="x" class="close" (click)="modalRef?.hide()"> </i-bs>
+        </div>
+
+        <input type="text" class="chat_name_form" placeholder="Username..." [formControl]="newChatParticipant">
+
+      <button class="btn btn-primary btn-lg" (click)="modalRef?.hide(); addUser(); ">Add User</button>
+      
+    </div>
+</ng-template>

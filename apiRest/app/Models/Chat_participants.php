@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chat_participants extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        "id_user",
+        "id_chat"
+    ];
 
-    protected $table = "chat_participants"
+    use HasFactory;
 }

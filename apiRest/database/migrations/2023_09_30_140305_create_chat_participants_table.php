@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("id_chat");
             $table->timestamps();
             
-            $table->primary("id_user","id_chat");
+            $table->primary(["id_user","id_chat"]);
             $table->foreign("id_user")->references("id")->on("users");
             $table->foreign("id_chat")->references("id")->on("chats");
         });

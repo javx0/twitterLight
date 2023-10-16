@@ -26,7 +26,8 @@ export class JwtInterceptor implements HttpInterceptor {
       catchError(errordata => {
 
         if(errordata.status == 401){
-          router.navigate(['/login'])  
+          localStorage.removeItem("token");
+          router.navigate(['/login']);
         }
         return throwError(errordata);
       } )

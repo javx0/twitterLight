@@ -4,13 +4,10 @@ import { inject } from '@angular/core';
 
 export const authGuard: CanActivateFn = (route, state) => {
   
-  
-  localStorage.setItem("authguard","a");
   const authService = inject(AuthService);
 
   authService.isUser().subscribe(result => {
 
-    localStorage.setItem("auth","a");
   })
 
   if(localStorage.getItem("token")){

@@ -1,0 +1,31 @@
+<header>
+    <h1>
+        {{name}}
+    </h1>    
+
+    <div class="add-user" (click)="follow()">
+
+        <div *ngIf="followed">
+            <i-bs name="person-fill-dash"></i-bs>
+        </div>
+
+        <div *ngIf="!followed">
+            <i-bs name="person-add"></i-bs>
+        </div>
+
+    </div>
+</header>
+
+<article>
+
+    <section *ngFor="let post of postList;">
+        <header>
+            <h1>{{post.userName}}</h1>
+            <p>{{post.created_at}}</p>
+        </header>
+        <p>
+            {{post.text}}
+        </p>
+    </section>
+
+</article>

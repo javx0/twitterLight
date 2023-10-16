@@ -10,22 +10,49 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http'
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './mainApp/home/home.component';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
+import { MessagesComponent } from './mainApp/messages/messages.component';
+import { BaseComponent } from './mainApp/base/base.component';
+
+import { ColorTheme, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
+import { envelope, boxArrowLeft, x, house,arrowRightCircle, personAdd, personFillDash, plusCircleFill, personPlusFill, send } from 'ngx-bootstrap-icons';
+import { ViewUserComponent } from './mainApp/view-user/view-user.component';
+
+const icons = {
+  envelope,
+  boxArrowLeft,
+  x,
+  house,
+  arrowRightCircle,
+  personAdd,
+  personFillDash,
+  plusCircleFill,
+  personPlusFill,
+  send
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    MessagesComponent,
+    BaseComponent,
+    ViewUserComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxBootstrapIconsModule.pick(icons, {
+      width: '1em',
+      height: '1em',
+    })
   ],
   providers: [
     {
